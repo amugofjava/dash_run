@@ -32,3 +32,4 @@ Flutter SDK. As such, this app does not use any plugins or additional packages.
 #### License
 
 The source is made available under the MIT license. See the LICENSE file for details.
+
