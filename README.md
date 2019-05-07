@@ -5,6 +5,8 @@ play with, the games were very simple and the graphics terrible?
 This is my take on an 8bit game, with simple game play and terrible 
 graphics! This game is 'loosely' based on Centipede.
 
+![Dash Run Gameplay](dash_run_play.gif)
+
 #### Introduction
 
 Dash and the Dashlets have escaped! The Flutter team has been dispatched
