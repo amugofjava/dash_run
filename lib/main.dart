@@ -26,9 +26,10 @@ Future<ui.Image> load() async {
   return fi.image;
 }
 
-void main() =>
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-        .then((_) => runApp(A()));
+void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((_) => runApp(A()));
+}
 
 class A extends StatelessWidget {
   G g = G();
