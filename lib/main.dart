@@ -1,19 +1,16 @@
 import 'dart:math';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 var s = 32.0;
 var sp;
 var p = Paint();
 var rd = Random();
-List<N> net;
-List<D> dsh;
+List<N> net = [];
+List<D> dsh = [];
 int v = 2;
 int scn = 0;
 int sr = 0;
@@ -36,7 +33,7 @@ class A extends StatelessWidget {
 
   @override
   Widget build(BuildContext c) => MediaQuery(
-        data: MediaQueryData.fromWindow(ui.window),
+        data: MediaQueryData.fromView(View.of(c)),
         child: Container(
           color: Colors.blue[200],
           child: SafeArea(
@@ -52,7 +49,7 @@ class A extends StatelessWidget {
 }
 
 class G extends SingleChildRenderObjectWidget {
-  R r;
+  late R r;
 
   @override
   RenderObject createRenderObject(BuildContext c) => r = R();
@@ -77,8 +74,8 @@ class G extends SingleChildRenderObjectWidget {
 }
 
 class R extends RenderBox {
-  double x;
-  int i;
+  double? x;
+  int i = 0;
 
   @override
   bool get sizedByParent => true;
@@ -94,8 +91,8 @@ class R extends RenderBox {
     net = [];
     v++;
 
-    for (var x = 0.0; x < 10; x++) {
-      dsh.add(D((x * -s), constraints.biggest));
+    for (var i = 0.0; i < 10; i++) {
+      dsh.add(D((i * -s), constraints.biggest));
     }
   }
 
@@ -167,21 +164,21 @@ class R extends RenderBox {
     }
 
     if (x == null) x = size.width / 2 - 16.0;
-    if (x < 0) x = 0;
-    if (x > h.width - s) x = h.width - s;
+    if (x! < 0) x = 0;
+    if (x! > h.width - s) x = h.width - s;
     if (dsh.every((x) => x.d)) nl();
 
     c.drawImageRect(sp, Rect.fromLTWH(0, 1952, 600.0, 960.0),
         Rect.fromLTWH(0, 0, h.width, h.height), p);
 
     c.drawImageRect(sp, Rect.fromLTWH(64 + (mo * 32.0), 0, s, s),
-        Rect.fromLTWH(x, y, 32, 32), p);
+        Rect.fromLTWH(x!, y, 32, 32), p);
 
     sc(c);
 
     dsh.forEach((f) {
       f.u(c);
-      if (!f.d && f.x >= x && f.x <= x + s && f.y + s >= y) {
+      if (!f.d && f.x >= x! && f.x <= x! + s && f.y + s >= y) {
         scn = 2;
         go();
         return;
@@ -189,6 +186,11 @@ class R extends RenderBox {
     });
 
     net.forEach((f) => f.paint(c, h));
+  }
+
+  @override
+  Size computeDryLayout(BoxConstraints c) {
+    return Size(c.maxWidth, c.maxHeight);
   }
 
   @override
@@ -226,7 +228,8 @@ class N {
 }
 
 class D {
-  double x, y;
+  double x;
+  double y = -1;
   int r = 0;
   Size z;
   bool d = false;
@@ -234,7 +237,7 @@ class D {
   D(this.x, this.z);
 
   void u(Canvas c) {
-    y = y ?? (z.height % s) + 16;
+    y >= 0.0 ? y : (z.height % s) + 16;
 
     if (!d) {
       if (x > 0) {

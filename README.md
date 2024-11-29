@@ -29,6 +29,12 @@ Flutter team member, the game ends.
 I wanted to see what I could build within the 5Kb limit and just the
 Flutter SDK. As such, this app does not use any plugins or additional packages.
 
+#### Update for 2024
+
+Since creating this game, Dart & Flutter have moved on. I have updated the code of
+Dash Run to keep it up to date with recent versions. This has taken the game over 
+the original 5k limit, by about 70 bytes, but it does keep it playable.
+
 #### License
 
 The source is made available under the MIT license. See the LICENSE file for details.
